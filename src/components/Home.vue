@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>{{ msg }}</h1>
+    <h1>Hello {{ getDisplayName() }}</h1>
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
@@ -17,7 +17,14 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
+
     <p>{{ welcome }}</p>
+    <div class="row">
+      <div class="col-xs-4" ></div>
+      <div class="col-xs-4" >
+        <button type="button" @click="logOut" class="btn btn-primary btn-block btn-flat">Logout</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,7 +34,30 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      welcome: 'Home'
+      welcome: 'Home',
+      auth: {
+        user: null,
+        email: '',
+        password: '',
+        message: '',
+        userName: '',
+        hasErrors: false
+      }
+    }
+  },
+  methods: {
+    logOut: function () {
+      // Signout the user using firebase
+      firebase.auth().signOut()
+        .then(function(error) {
+          this.auth.user = firebase.auth().currentUser;
+          this.auth.message = 'User signed out Successfully';
+        }.bind(this), function (error) {
+          alert('Failed to signout user, try again later');
+        });
+    },
+    getDisplayName: function () {
+      return firebase.auth().currentUser.displayName
     }
   }
 }

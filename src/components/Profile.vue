@@ -2,8 +2,15 @@
   <div class="profile">
     <h1>{{ welcome }}</h1>
     <form>
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Display Name">
+      <div class="form-group has-feedback">
+        <input v-model:displayName="auth.userName" type="text" class="form-control" placeholder="Display name">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-4" ></div>
+        <div class="col-xs-4" >
+          <button type="button" @click="updateProfile" class="btn btn-primary btn-block btn-flat">Update display name</button>
+        </div>
       </div>
     </form>
   </div>
@@ -14,7 +21,16 @@
     name: 'profile',
     data () {
       return {
-        welcome: 'Profile'
+        welcome: 'Profile',
+        displayName: '',
+        auth: {
+          user: null,
+          email: '',
+          password: '',
+          message: '',
+          userName: '',
+          hasErrors: false
+        }
       }
     },
     methods: {
@@ -30,7 +46,8 @@
         user.updateProfile({
           displayName: vm.auth.userName
         }).then(function() {
-          vm.auth.message = 'Successfully udpated user profile.';
+          vm.auth.message = 'Successfully updated user profile.';
+          vm.$router.push('/')
         }, function(error) {
           vm.auth.message = 'Failed to update user profile.';
           vm.auth.hasErrors = true;

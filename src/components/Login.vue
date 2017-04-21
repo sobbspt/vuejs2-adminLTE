@@ -20,9 +20,6 @@
         <div class="col-xs-4" >
           <button type="button" @click="logIn" class="btn btn-primary btn-block btn-flat">Login</button>
         </div>
-        <div class="col-xs-4" >
-          <button type="button" @click="logOut" class="btn btn-primary btn-block btn-flat">Logout</button>
-        </div>
         <!-- /.col -->
       </div>
     </form>
@@ -36,6 +33,7 @@
       return {
         msg: 'Welcome to Your Vue.js App',
         welcome: 'Hi!!!',
+        displayName: '',
         auth: {
           user: null,
           email: '',
@@ -61,21 +59,11 @@
           .then(function (data) {
             vm.auth.user = firebase.auth().currentUser;
             console.log('user = ' + JSON.stringify(vm.auth.user))
+            console.log('displayName = ' + JSON.stringify(vm.auth.user.displayName))
           }).catch(function(error) {
           vm.auth.message = error.message;
           vm.auth.hasErrors = true;
         });
-      },
-      logOut: function () {
-        // Signout the user using firebase
-        console.log(JSON.stringify(firebase.auth().currentUser))
-        firebase.auth().signOut()
-          .then(function(error) {
-            this.auth.user = firebase.auth().currentUser;
-            this.auth.message = 'User signed out Successfully';
-          }.bind(this), function (error) {
-            alert('Failed to signout user, try again later');
-          });
       },
       dismissAlert: function () {
         this.auth.message = '';
