@@ -4,7 +4,8 @@ import LoginLayout from '@/components/layouts/LoginLayout'
 import DashboardLayout from '@/components/layouts/DashboardLayout'
 import Login from '@/components/Login'
 import Profile from '@/components/Profile'
-import Event from '@/components/dashboards/Event'
+import EventList from '@/components/dashboards/event/EventList'
+import EventCreate from '@/components/dashboards/event/EventCreate'
 
 Vue.use(Router)
 
@@ -56,8 +57,12 @@ export default new Router({
       },
       children: [
         {
-          path: '/event',
-          component: Event
+          path: '/event-list',
+          component: EventList
+        },
+        {
+          path: '/event-create',
+          component: EventCreate
         }
       ]
     },

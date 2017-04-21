@@ -32,25 +32,25 @@
       <ul class="sidebar-menu">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <router-link tag="li" to="/event" active-class="active">
-          <a><i class="fa fa-link"></i> <span>Event</span></a>
-        </router-link>
-
-        <li>
-          <a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a>
-        </li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link">
 
-          </i> <span>Multilevel</span>
+          </i> <span>Event</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
+            <router-link tag="li" to="/event-list" active-class="active">
+              <a><i class="fa fa-link"></i> <span>Event list</span></a>
+            </router-link>
+            <router-link tag="li" to="/event-create" active-class="active">
+              <a><i class="fa fa-link"></i> <span>Create event</span></a>
+            </router-link>
           </ul>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a>
         </li>
       </ul>
       <!-- /.sidebar-menu -->
