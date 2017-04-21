@@ -42,7 +42,8 @@ export default {
         message: '',
         userName: '',
         hasErrors: false
-      }
+      },
+      loading: true
     }
   },
   methods: {

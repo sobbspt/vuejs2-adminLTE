@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
 import LoginLayout from '@/components/layouts/LoginLayout'
+import DashboardLayout from '@/components/layouts/DashboardLayout'
 import Login from '@/components/Login'
 import Profile from '@/components/Profile'
+import Event from '@/components/dashboards/Event'
 
 Vue.use(Router)
 
@@ -37,8 +38,7 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'Hello',
-      component: Home,
+      component: DashboardLayout,
       beforeEnter: (to, from, next) => {
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
@@ -53,7 +53,13 @@ export default new Router({
             next('/login')
           }
         });
-      }
+      },
+      children: [
+        {
+          path: '/event',
+          component: Event
+        }
+      ]
     },
     {
       path: '/profile',
