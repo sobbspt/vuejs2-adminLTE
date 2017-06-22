@@ -16,7 +16,9 @@
     "firebase": "^3.8.0",
     "vue": "^2.2.2",
     "vue-router": "^2.3.0",
-    "vuefire": "^1.4.2"
+    "vuefire": "^1.4.2",
+    "vuejs-datepicker": "^0.7.11",
+    "vue-spinner": "^1.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
